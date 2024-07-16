@@ -9,6 +9,6 @@
 
 # Preview
 
-<video controls src="video.mp4" title="Title"></video>
+[Watch the video](./video.mp4)
 ![alt text](image.png)
 ![alt text](image-1.png)
