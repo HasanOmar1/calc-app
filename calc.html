@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #333;
+        background: url("./cartoon-student-math-class.jpg") no-repeat
+          center/cover fixed;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 50px;
+      }
+      nav {
+        height: 70px;
+        width: 100%;
+
+        background-color: white;
+        opacity: 0.7;
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        list-style: none;
+      }
+
+      nav ul a {
+        padding: 23px 30px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+
+      nav ul a:hover {
+        background-color: darkcyan;
+        color: greenyellow !important;
+      }
+
+      nav ul a:visited {
+        color: inherit;
+      }
+
+      nav h1 {
+        margin: 20px 80px;
+        font-size: 2rem;
+      }
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 200px;
+      }
+
+      form {
+        display: flex;
+        gap: 15px;
+      }
+      input,
+      select {
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 2rem;
+      }
+
+      input:focus,
+      select:focus {
+        outline: 5px solid darkred;
+      }
+
+      select {
+        cursor: pointer;
+      }
+
+      #calculate-btn {
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      #calculate-btn:hover {
+        background-color: goldenrod;
+        color: white;
+      }
+
+      img {
+        width: 86px;
+      }
+
+      .imgs-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .dot {
+        width: 33px;
+        padding-top: 106px;
+      }
+
+      .operator {
+        padding: 0 10px;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 1.3rem;
+        transition: all 0.2s;
+        border: none;
+        border-radius: 5px;
+        background-color: darkgreen;
+        color: white;
+      }
+
+      button:hover {
+        background-color: darkolivegreen;
+      }
+
+      .random-1 {
+        position: absolute;
+        top: 306px;
+        left: 530px;
+      }
+
+      .random-2 {
+        position: absolute;
+        top: 306px;
+
+        right: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h1>Calculator</h1>
+      <ul>
+        <a href="./home.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./calc.html">Project</a>
+      </ul>
+    </nav>
+
+    <div class="form-container">
+      <div class="btns-container">
+        <button class="random-1">Random Number</button>
+        <button class="random-2">Random Number</button>
+      </div>
+      <form>
+        <input type="number" id="num1" class="numberInput" required />
+        <select name="operators" id="operators">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+        <input type="number" id="num2" required />
+        <input type="submit" value="Calculate" id="calculate-btn" />
+      </form>
+    </div>
+
+    <div class="imgs-container"></div>
+
+    <script>
+      const form = document.querySelector("form");
+      const firstInput = document.querySelector("#num1");
+      const secondInput = document.querySelector("#num2");
+      const operator = document.querySelector("#operators");
+      const imgsContainer = document.querySelector(".imgs-container");
+      const randomInput1 = document.querySelector(".random-1");
+      const randomInput2 = document.querySelector(".random-2");
+
+      randomInput1.addEventListener("click", () => {
+        let randomNumbers = Math.ceil(Math.random() * 100000);
+        firstInput.value = randomNumbers;
+      });
+      randomInput2.addEventListener("click", () => {
+        let randomNumbers = Math.ceil(Math.random() * 100000);
+        secondInput.value = randomNumbers;
+      });
+
+      function add(num1, num2) {
+        return num1 + num2;
+      }
+      function minus(num1, num2) {
+        return num1 - num2;
+      }
+
+      function multiple(num1, num2) {
+        return num1 * num2;
+      }
+
+      function divide(num1, num2) {
+        return num1 / num2;
+      }
+
+      function appendImg(array, i, number) {
+        if (array[i] === number) {
+          const imgElement = document.createElement("img");
+          imgsContainer.append(imgElement);
+          imgElement.src = `./numbers/${number}.jpg`;
+          imgElement.alt = number;
+        }
+      }
+
+      function appendOperatorImg(operatorType) {
+        if (operator.value === operatorType) {
+          const imgElement = document.createElement("img");
+          imgsContainer.append(imgElement);
+          imgElement.src = `./numbers/${operatorType}.jpg`;
+          imgElement.classList.add("operator");
+          if (operatorType === "+") {
+            imgElement.alt = "plus";
+          }
+          if (operatorType === "-") {
+            imgElement.alt = "minus";
+          }
+        }
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+
+        while (imgsContainer.firstChild) {
+          imgsContainer.removeChild(imgsContainer.firstChild);
+        }
+
+        const firstInputValue = parseInt(firstInput.value);
+        const secondInputValue = parseInt(secondInput.value);
+        let result;
+
+        if (operator.value === "+") {
+          result = add(firstInputValue, secondInputValue);
+        }
+
+        if (operator.value === "-") {
+          result = minus(firstInputValue, secondInputValue);
+        }
+
+        if (operator.value === "*") {
+          result = multiple(firstInputValue, secondInputValue);
+        }
+
+        if (operator.value === "/") {
+          result = divide(firstInputValue, secondInputValue);
+        }
+
+        if (result.toString().includes(".")) {
+          result = result.toFixed(3);
+        }
+
+        let num1String = firstInputValue.toString().split("");
+        let num2String = secondInputValue.toString().split("");
+        let resultToString = result.toString().split("");
+
+        for (let i = 0; i < num1String.length; i++) {
+          appendImg(num1String, i, "-");
+          appendImg(num1String, i, "0");
+          appendImg(num1String, i, "1");
+          appendImg(num1String, i, "2");
+          appendImg(num1String, i, "3");
+          appendImg(num1String, i, "4");
+          appendImg(num1String, i, "5");
+          appendImg(num1String, i, "6");
+          appendImg(num1String, i, "7");
+          appendImg(num1String, i, "8");
+          appendImg(num1String, i, "9");
+        }
+
+        appendOperatorImg("+");
+        appendOperatorImg("-");
+
+        if (operator.value === "*") {
+          const imgElement = document.createElement("img");
+          imgsContainer.append(imgElement);
+          imgElement.src = "./numbers/x.jpg";
+          imgElement.classList.add("operator");
+          imgElement.alt = "multiply";
+        }
+        if (operator.value === "/") {
+          const imgElement = document.createElement("img");
+          imgsContainer.append(imgElement);
+          imgElement.src = "./numbers/divide.jpg";
+          imgElement.classList.add("operator");
+          imgElement.alt = "divide";
+        }
+
+        for (let i = 0; i < num2String.length; i++) {
+          appendImg(num2String, i, "-");
+          appendImg(num2String, i, "0");
+          appendImg(num2String, i, "1");
+          appendImg(num2String, i, "2");
+          appendImg(num2String, i, "3");
+          appendImg(num2String, i, "4");
+          appendImg(num2String, i, "5");
+          appendImg(num2String, i, "6");
+          appendImg(num2String, i, "7");
+          appendImg(num2String, i, "8");
+          appendImg(num2String, i, "9");
+        }
+
+        const equalImg = document.createElement("img");
+        imgsContainer.append(equalImg);
+        equalImg.src = "./numbers/=.jpg";
+        equalImg.classList.add("operator");
+        equalImg.alt = "equal";
+
+        for (let i = 0; i < resultToString.length; i++) {
+          appendImg(resultToString, i, "-");
+          appendImg(resultToString, i, "0");
+          appendImg(resultToString, i, "1");
+          appendImg(resultToString, i, "2");
+          appendImg(resultToString, i, "3");
+          appendImg(resultToString, i, "4");
+          appendImg(resultToString, i, "5");
+          appendImg(resultToString, i, "6");
+          appendImg(resultToString, i, "7");
+          appendImg(resultToString, i, "8");
+          appendImg(resultToString, i, "9");
+
+          if (resultToString[i] === ".") {
+            const imgElement = document.createElement("img");
+            imgsContainer.append(imgElement);
+            imgElement.src = `./numbers/dot.jpg`;
+            imgElement.classList.add("dot");
+            imgElement.alt = "dot";
+          }
+        }
+
+        firstInput.value = "";
+        secondInput.value = "";
+      }
+
+      form.addEventListener("submit", handleSubmit);
+    </script>
+  </body>
+</html>

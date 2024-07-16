@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #333;
+        color: white;
+      }
+
+      nav {
+        height: 70px;
+        width: 100%;
+        background-color: white;
+        opacity: 0.7;
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        list-style: none;
+      }
+
+      nav ul a {
+        padding: 23px 30px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+
+      nav ul a:hover {
+        background-color: darkcyan;
+        color: greenyellow !important;
+      }
+
+      nav ul a:visited {
+        color: inherit;
+      }
+
+      nav h1 {
+        margin: 20px 80px;
+        font-size: 2rem;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+        gap: 50px;
+      }
+
+      .container h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 3rem;
+        color: yellowgreen;
+      }
+
+      .container p {
+        font-size: 2rem;
+        font-family: sans-serif, Arial, Helvetica, sans-serif;
+        width: 700px;
+      }
+
+      .info {
+        letter-spacing: 2px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        line-height: 1.3;
+      }
+
+      .go-to {
+        font-size: 2rem;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+
+      .go-to a {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        transition: all 0.3s;
+        margin-left: 10px;
+        background-color: darkcyan;
+        color: gold;
+        border: none;
+      }
+
+      .go-to a:hover {
+        background-color: yellowgreen;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h1>Calculator</h1>
+      <ul>
+        <a href="./home.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./calc.html">Project</a>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>About</h1>
+      <div class="info">
+        <p>
+          I have created a calculator website where you can calculate numbers
+          using the 4 operators (Plus , Minus , Multiply and Divide) and I made
+          it that when you calculate, you see the inputs values and result as
+          images.
+        </p>
+      </div>
+      <div class="go-to">Check out the <a href="./calc.html">Project</a></div>
+    </div>
+  </body>
+</html>
