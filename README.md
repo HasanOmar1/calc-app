@@ -9,6 +9,6 @@
 
 # Preview
 
-[Watch the video](./video.mp4)
+![alt text](preview.gif)
 ![alt text](image.png)
 ![alt text](image-1.png)
